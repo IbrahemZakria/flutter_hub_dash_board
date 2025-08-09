@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hub_dash_board/core/utils/widgts/custom_button.dart';
+import 'package:flutter_hub_dash_board/features/product/presentation/pages/add_product_page.dart';
 
 class DashBoardBodyPage extends StatelessWidget {
   const DashBoardBodyPage({super.key});
@@ -11,7 +12,14 @@ class DashBoardBodyPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [CustomButton(onTap: () {}, text: "DashBoard")],
+          children: [
+            CustomButton(
+              onTap: () {
+                Navigator.pushNamed(context, AddProductPage.routeName);
+              },
+              text: "DashBoard",
+            ),
+          ],
         ),
       ),
     );

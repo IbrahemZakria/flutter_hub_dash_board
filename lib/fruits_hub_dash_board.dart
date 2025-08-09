@@ -10,6 +10,7 @@ class FruitsHubDashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: DashBoardPage.routeName,
       onGenerateRoute: onGenerateRoute,
       title: 'Flutter Demo',
