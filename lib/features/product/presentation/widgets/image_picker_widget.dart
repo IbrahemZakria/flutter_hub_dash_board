@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hub_dash_board/core/utils/services/storage_services/supa_base_storage_servces.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerWidget extends StatefulWidget {
@@ -51,6 +52,10 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                         fileimage = File(xfile.path);
                         widget.fileimage(fileimage);
                       });
+                      await SupaBaseStorageServces().uploadFile(
+                        fileimage!,
+                        "product_image",
+                      );
                     }
                   },
                   icon: Icon(Icons.image_outlined, size: size.height * .22),
