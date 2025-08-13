@@ -8,5 +8,5 @@ abstract class AddProductRepo {
   Future<Either<Failure, void>> uploadproduct(
     AddProductEntity addProductEntity,
   );
-  Future<Either<Failure, String>> imageStorge(File file, String path);
+  Future<Either<Failure, String>> imageStorge(File file);
 }

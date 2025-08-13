@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
     this.width = double.infinity,
   });
   final VoidCallback? onTap;
-  final String text;
+  final Widget text;
   final double? width;
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,7 @@ class CustomButton extends StatelessWidget {
         ),
         width: width,
         height: 60,
-        child: Center(
-          child: Text(text, style: TextStyle(color: Colors.white)),
-        ),
+        child: Center(child: text),
       ),
     );
   }

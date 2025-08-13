@@ -17,7 +17,7 @@ class SupaBaseStorageServces implements StorageServices {
       // رفع الملف
       await supabase.storage
           .from('fruits-image')
-          .upload("$path$baseName$extensionName", file);
+          .upload("$path/$baseName$extensionName", file);
 
       // جلب الرابط العام للملف
       final imageUrl = supabase.storage
@@ -27,7 +27,9 @@ class SupaBaseStorageServces implements StorageServices {
       return imageUrl;
     } on StorageException catch (e) {
       if (e.error == "Duplicate") {
-        throw CustomException("this file is alredy uploaded");
+        return supabase.storage
+            .from('fruits-image')
+            .getPublicUrl("$path/$baseName$extensionName");
       } else {
         log(e.toString());
         throw CustomException("un expected error");

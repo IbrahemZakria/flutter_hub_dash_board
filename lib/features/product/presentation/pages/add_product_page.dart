@@ -7,6 +7,9 @@ class AddProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: AddProductPageBody());
+    return Scaffold(
+      appBar: AppBar(title: Text("Add Product"), centerTitle: true),
+      body: AddProductPageBody(),
+    );
   }
 }

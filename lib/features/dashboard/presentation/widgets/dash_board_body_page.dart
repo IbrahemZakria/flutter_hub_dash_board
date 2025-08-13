@@ -17,7 +17,14 @@ class DashBoardBodyPage extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, AddProductPage.routeName);
               },
-              text: "DashBoard",
+              text: Text(
+                "DashBoard",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ],
         ),
