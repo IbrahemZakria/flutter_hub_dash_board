@@ -1,9 +1,10 @@
 import 'dart:core';
 import 'dart:io';
 
-import 'package:flutter_hub_dash_board/features/product/domain/entities/add_product_entity.dart';
+import 'package:flutter_hub_dash_board/features/product/data/models/review_model.dart';
+import 'package:flutter_hub_dash_board/features/product/domain/entities/product_entity.dart';
 
-class AddProductModel extends AddProductEntity {
+class ProductModel {
   final String name;
   final String price;
   String? imageUrl;
@@ -13,11 +14,16 @@ class AddProductModel extends AddProductEntity {
   final int numberOfMonthExpiration;
   final bool isOrganic;
   final bool isFeatured;
+  List<ReviewModel> reviewModel;
 
   int numberOfCalories;
   final num raitingCount;
   final num averageCount;
-  AddProductModel({
+  final num sellsCount;
+
+  ProductModel({
+    required this.sellsCount,
+    required this.reviewModel,
     required this.numberOfCalories,
     required this.numberOfMonthExpiration,
     required this.isOrganic,
@@ -31,20 +37,7 @@ class AddProductModel extends AddProductEntity {
     this.imageUrl,
     required this.description,
     required this.productCode,
-  }) : super(
-         isFeatured: isFeatured,
-         image: image,
-         name: name,
-         price: price,
-         imageUrl: imageUrl,
-         description: description,
-         productCode: productCode,
-         numberOfCalories: numberOfCalories,
-         numberOfMonthExpiration: numberOfMonthExpiration,
-         isOrganic: isOrganic,
-         raitingCount: raitingCount,
-         averageCount: averageCount,
-       );
+  });
 
   Map<String, dynamic> toJson() {
     return {
@@ -59,11 +52,14 @@ class AddProductModel extends AddProductEntity {
       'raitingCount': raitingCount,
       'averageCount': averageCount,
       'isFeatured': isFeatured,
+      'sellsCount': sellsCount,
+      'reviews': reviewModel.map((e) => e.toJson()).toList(),
     };
   }
 
-  factory AddProductModel.fromJson(Map<String, dynamic> json) {
-    return AddProductModel(
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      reviewModel: json["reviews"],
       name: json['name'] ?? '',
       price: json['price']?.toString() ?? '0',
       imageUrl: json['imageUrl'],
@@ -75,10 +71,14 @@ class AddProductModel extends AddProductEntity {
       raitingCount: json['raitingCount'] ?? 0,
       averageCount: json['averageCount'] ?? 0,
       isFeatured: json["isFeatured"],
+      sellsCount: json["sellsCount"],
     );
   }
-  factory AddProductModel.fromEntity(AddProductEntity entity) {
-    return AddProductModel(
+  factory ProductModel.fromEntity(ProductEntity entity) {
+    return ProductModel(
+      reviewModel: entity.reviewEntity.map((e) {
+        return ReviewModel.fromReviewEntity(e);
+      }).toList(),
       isFeatured: entity.isFeatured,
       image: entity.image,
       name: entity.name,
@@ -91,6 +91,8 @@ class AddProductModel extends AddProductEntity {
       isOrganic: entity.isOrganic,
       raitingCount: entity.raitingCount ?? 0,
       averageCount: entity.averageCount ?? 0,
+      sellsCount: entity.sellsCount ?? 0,
     );
   }
 }
+// ReviewModel.fromReviewEntity(entity.reviewEntity)

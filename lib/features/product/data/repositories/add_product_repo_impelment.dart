@@ -7,8 +7,8 @@ import 'package:flutter_hub_dash_board/core/failure/failure.dart';
 import 'package:flutter_hub_dash_board/core/failure/firebase_server_failure.dart';
 import 'package:flutter_hub_dash_board/core/utils/services/data_base/data_base_services.dart';
 import 'package:flutter_hub_dash_board/core/utils/services/storage_services/storage_services.dart';
-import 'package:flutter_hub_dash_board/features/product/data/models/add_product_model.dart';
-import 'package:flutter_hub_dash_board/features/product/domain/entities/add_product_entity.dart';
+import 'package:flutter_hub_dash_board/features/product/data/models/product_model.dart';
+import 'package:flutter_hub_dash_board/features/product/domain/entities/product_entity.dart';
 import 'package:flutter_hub_dash_board/features/product/domain/repositories/add_product_repo.dart';
 
 class AddProductRepoImpelment extends AddProductRepo {
@@ -33,9 +33,9 @@ class AddProductRepoImpelment extends AddProductRepo {
 
   @override
   Future<Either<Failure, void>> uploadproduct(
-    AddProductEntity addProductEntity,
+    ProductEntity addProductEntity,
   ) async {
-    Map<String, dynamic> data = AddProductModel.fromEntity(
+    Map<String, dynamic> data = ProductModel.fromEntity(
       addProductEntity,
     ).toJson();
     try {

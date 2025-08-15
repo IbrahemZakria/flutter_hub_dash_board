@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hub_dash_board/core/utils/services/get_it_services.dart';
 import 'package:flutter_hub_dash_board/core/utils/widgts/custom_button.dart';
 import 'package:flutter_hub_dash_board/core/utils/widgts/user_message.dart';
-import 'package:flutter_hub_dash_board/features/product/domain/entities/add_product_entity.dart';
+import 'package:flutter_hub_dash_board/features/product/domain/entities/product_entity.dart';
+import 'package:flutter_hub_dash_board/features/product/domain/entities/review_entity.dart';
 import 'package:flutter_hub_dash_board/features/product/domain/repositories/add_product_repo.dart';
 import 'package:flutter_hub_dash_board/features/product/presentation/cubit/add_product/add_product_cubit.dart';
 import 'package:flutter_hub_dash_board/features/product/presentation/widgets/custom_check_box_list_tile.dart';
@@ -72,13 +73,36 @@ class _AddProductPageBodyState extends State<AddProductPageBody> {
                       },
                     ),
                     SizedBox(height: 16),
-                    BlocBuilder<AddProductCubit, AddProductState>(
+                    BlocConsumer<AddProductCubit, AddProductState>(
+                      listener: (context, state) {
+                        if (state is AddProductSuccessSteate) {
+                          usermessage(
+                            message: "تم اضافه المنتج بنجاح",
+                            backgroundColor: Colors.green,
+                          );
+                        }
+                        if (state is AddProductFailureState) {
+                          usermessage(
+                            message: state.errorMessage,
+                            backgroundColor: Colors.green,
+                          );
+                        }
+                      },
                       builder: (context, state) {
                         return CustomButton(
                           onTap: () {
                             if (image != null) {
                               if (formKey.currentState!.validate()) {
-                                AddProductEntity entity = AddProductEntity(
+                                ProductEntity entity = ProductEntity(
+                                  reviewEntity: [
+                                    ReviewEntity(
+                                      image: "image",
+                                      name: "name",
+                                      date: "date",
+                                      reviewDescription: "reviewDescription",
+                                      ratting: 5,
+                                    ),
+                                  ],
                                   image: image!,
                                   name: name.text,
                                   price: price.text,

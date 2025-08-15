@@ -1,6 +1,8 @@
 import 'dart:io';
 
-class AddProductEntity {
+import 'package:flutter_hub_dash_board/features/product/domain/entities/review_entity.dart';
+
+class ProductEntity {
   final String name;
   final String price;
   String? imageUrl;
@@ -13,8 +15,13 @@ class AddProductEntity {
   int numberOfCalories;
   num? raitingCount;
   num? averageCount;
+  List<ReviewEntity> reviewEntity;
+  num? sellsCount;
 
-  AddProductEntity({
+  ProductEntity({
+    this.sellsCount,
+
+    required this.reviewEntity,
     required this.numberOfCalories,
     required this.numberOfMonthExpiration,
     required this.isOrganic,
