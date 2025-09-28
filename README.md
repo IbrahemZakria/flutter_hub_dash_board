@@ -1,6 +1,6 @@
 # 🖥️ Flutter Hub Dashboard  
 
-
+An **Admin Dashboard** built with Flutter to manage the **Fruits Hub App**.  
 
 ## ✨ Features
 - 📦 Add new products 
@@ -16,3 +16,5 @@
 - **Bloc / Cubit** for state management  
 - **Dio** for API integration  
 
+## 🔗 Related Projects
+- 🍎 **Fruits Hub App (Customer side)** → [Fruits Hub](https://github.com/IbrahemZakria/fruits_hub)  
